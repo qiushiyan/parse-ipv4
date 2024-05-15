@@ -1,12 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	ip, err := parseIPv4("172.168.5.1")
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: main <ip address>")
+		return
+	}
+	ip, err := parseIPv4(os.Args[1])
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	fmt.Printf("%d\n", ip)
+	fmt.Printf("%s -> %d\n", os.Args[1], ip)
 }
